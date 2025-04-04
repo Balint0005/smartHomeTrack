@@ -44,13 +44,25 @@ export class DevicesComponent {
   }
 
   calculateColor(value: number): string {
-    // Szín kiszámítása az érték alapján
+    let category = '';
+
     if (value >= 75) {
-      return "accent"; // kek szín
+      category = 'high';
     } else if (value >= 50) {
-      return "warn"; // sarga szín
+      category = 'medium';
     } else {
-      return "primary"; // default szín
+      category = 'low';
+    }
+  
+    switch (category) {
+      case 'high':
+        return 'accent';
+      case 'medium':
+        return 'warn';
+      case 'low':
+        return 'primary';
+      default:
+        return 'primary';
     }
   }
 
@@ -239,7 +251,6 @@ amelyben megerősítheti a törlési szándékát. Ha a felhasználó megerősí
   }
 
   viewDevice(row: any) {
-    //window.open('/dashboard/devices/'+row.id, '_blank');
     window.location.href = "/dashboard/devices/" + row.id;
   }
 

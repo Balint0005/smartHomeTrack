@@ -46,6 +46,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
+import { DeviceStatePipe } from './device-state.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { provideStorage, getStorage } from "@angular/fire/storage";
     DeleteDeviceComponent,
     /* ViewDeviceComponent,*/
     ConfigDeviceComponent,
+    DeviceStatePipe,
   ],
   imports: [
     BrowserModule,
