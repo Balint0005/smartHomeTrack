@@ -1,2 +1,2 @@
-# SmartHomeTracker
-Basic smart home device manager/Egyszerű okos otthon eszköz menedzselő
+# Smarthome Tracker
+Basic smarthome device manager/Egyszerű okosotthon eszköz menedzselő
