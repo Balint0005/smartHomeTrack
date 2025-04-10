@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Message } from 'src/app/shared/model/message';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +16,7 @@ export class DashboardComponent {
 
   async ngOnInit(): Promise<void> {
     await this.getUserEmail();
-  //  await this.getPythonMessage();
   }
-
   
   async getUserEmail(): Promise<void> {
     try {
@@ -27,10 +26,7 @@ export class DashboardComponent {
     }
   }
 
-
-
   register() {
     this.auth.logout();
   }
-
 }

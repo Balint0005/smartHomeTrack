@@ -42,7 +42,6 @@ export class DevicesComponent {
     this.progressValue = value;
     this.progressColor = this.calculateColor(value);
   }
-
   calculateColor(value: number): string {
     let category = '';
 
@@ -53,7 +52,6 @@ export class DevicesComponent {
     } else {
       category = 'low';
     }
-  
     switch (category) {
       case 'high':
         return 'accent';
@@ -65,16 +63,13 @@ export class DevicesComponent {
         return 'primary';
     }
   }
-
   ngOnInit(): void {
     this.getAllDevice();
   }
-
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
   async addDevice() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -83,9 +78,7 @@ export class DevicesComponent {
       title: "Eszköz hozzáadása",
       buttonName: "Hozzáadás",
     };
-
     const dialogRef = this.dialog.open(AddDeviceComponent, dialogConfig);
-
     try {
       const data = await firstValueFrom(dialogRef.afterClosed());
       if (data) {
@@ -97,19 +90,16 @@ export class DevicesComponent {
       console.log("Hiba történt az eszköz hozzáadása közben:", error);
     }
   }
-
   editDevice(row: any) {
     if (row.id == null || row.name == null) {
       return;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
     dialogConfig.data.title = "Eszköz szerkesztése";
     dialogConfig.data.buttonName = "Mentés";
-
     const dialogRef = this.dialog.open(AddDeviceComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((updatedData) => {
       if (updatedData) {
@@ -117,7 +107,6 @@ export class DevicesComponent {
           updatedData.datas &&
           updatedData.datas.health !== undefined &&
           updatedData.datas.health !== null;
-
         //csak akkor kuldjuk el a modositott adatot a szerverre, ha tenylegesen megvaltozott
         if (hasHealthChanged) {
           this.dataApi
@@ -144,29 +133,24 @@ export class DevicesComponent {
                 this.openSnackBar("Hiba", "OK");
                 return of(null);
               })
-            )
-            .subscribe(() => {
+            ).subscribe(() => {
               this.openSnackBar("Sikeres", "OK");
             });
         }
       }
     });
   }
-
   configDevice(row: any) {
     if (row.id == null || row.name == null) {
       return;
     }
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = row;
     dialogConfig.data.title = "Eszköz konfigurálása";
     dialogConfig.data.buttonName = "Mentés";
-
     const dialogRef = this.dialog.open(ConfigDeviceComponent, dialogConfig);
-
     dialogRef.afterClosed().subscribe((configData) => {
       if (configData) {
         this.dataApi
@@ -184,7 +168,6 @@ export class DevicesComponent {
       }
     });
   }
-
   /*Amikor a felhasználó törölni kíván egy eszközt, először megnyitódik egy párbeszédpanel a DeleteDeviceComponent segítségével, 
 amelyben megerősítheti a törlési szándékát. Ha a felhasználó megerősíti a törlési szándékát,
  akkor meghívódik a deleteDevice metódus a data-service.ts fájlból, amely törli az eszközt az adatbázisból. */
@@ -211,7 +194,6 @@ amelyben megerősítheti a törlési szándékát. Ha a felhasználó megerősí
       }
     });
   }
-
   async getAllDevice() {
     try {
       const devicesObservable = await this.dataApi.getAllDevices();
@@ -249,15 +231,12 @@ amelyben megerősítheti a törlési szándékát. Ha a felhasználó megerősí
       console.log("Hiba történt: ", error);
     }
   }
-
   viewDevice(row: any) {
     window.location.href = "/dashboard/devices/" + row.id;
   }
-
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

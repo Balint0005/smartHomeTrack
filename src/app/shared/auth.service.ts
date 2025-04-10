@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, of, Subscription } from "rxjs";
 import { switchMap } from "rxjs/operators";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { User } from "src/app/shared/model/user";
 
 @Injectable({
   providedIn: "root",
@@ -47,6 +48,11 @@ export class AuthService {
   login(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       () => {
+        const user: User = {
+          email: email,
+          password: password,
+        };
+        localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", "true");
         this.router.navigate(["/dashboard"]); //ha bejelentkezek
       },

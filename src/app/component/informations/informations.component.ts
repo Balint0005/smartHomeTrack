@@ -62,18 +62,8 @@ export class InformationsComponent {
       console.log('email error!', error);
     }
   }
-
- /* async getPythonMessage(): Promise<void> {
-    try {
-      const data = await this.http.get<any>('http://localhost:8000/api/message').toPromise();
-      this.pythonMessage = data.message;
-    } catch (error) {
-      console.log('Error getting Python message:', error);
-    }
-  }*/
-
+  
   register() {
     this.auth.logout();
   }
-
 }

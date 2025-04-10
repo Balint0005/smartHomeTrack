@@ -17,12 +17,10 @@ export class DeleteDeviceComponent {
 
   close() {
     this.dialogRef.close();
-
   }
 
   delete() {
     const deleteDevice = true;
     this.dialogRef.close(this.delete)
   }
-
 }
