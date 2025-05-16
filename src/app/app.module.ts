@@ -47,6 +47,7 @@ import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
 import { provideStorage, getStorage } from "@angular/fire/storage";
 import { DeviceStatePipe } from './device-state.pipe';
+import { MetricsPipe } from './metrics.pipe';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { DeviceStatePipe } from './device-state.pipe';
     /* ViewDeviceComponent,*/
     ConfigDeviceComponent,
     DeviceStatePipe,
+    MetricsPipe,
   ],
   imports: [
     BrowserModule,

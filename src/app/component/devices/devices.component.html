@@ -63,7 +63,7 @@
 
         <ng-container *ngIf="row.type === 'Lámpa'">
           <div *ngIf="row.datas">
-            <p><strong>Fényerő:</strong> {{ row.datas.lightpower }}</p>  
+            <p><strong>Fényerő:</strong> {{ row.datas.lightpower | metrics:'light' }}</p>  
             <p><strong>Állapot: </strong> <span [ngStyle]="{ color: row.datas.power != 2 ? '#C9423F' : 'green' }">{{ row.datas.power | deviceState }}</span></p>
           </div>
           
@@ -71,7 +71,7 @@
 
         <ng-container *ngIf="row.type === 'Klíma'">
           <div *ngIf="row.datas">
-            <p><strong>Hőmérséklet:</strong> {{ row.datas.temperature }}</p>
+            <p><strong>Hőmérséklet:</strong> {{ row.datas.temperature | metrics:'temp' }}</p>
             <p><strong>Állapot: </strong> <span [ngStyle]="{ color: row.datas.power != 2 ? '#C9423F' : 'green' }">{{ row.datas.power | deviceState }}</span></p>
           </div>
           
