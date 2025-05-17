@@ -12,6 +12,7 @@ import { DeleteDeviceComponent } from "./delete-device/delete-device.component";
 import { firstValueFrom, of, Subscription, Subject } from "rxjs";
 import { catchError, map, switchMap, concatMap } from "rxjs/operators";
 import { ConfigDeviceComponent } from "./config-device/config-device.component";
+import { Firestore, collection, query, where, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: "app-devices",
@@ -243,5 +244,23 @@ amelyben megerősítheti a törlési szándékát. Ha a felhasználó megerősí
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  getLampsTurnedOn(firestore: Firestore) {
+    const devicesRef = collection(firestore, 'devices');
+    const q = query(
+      devicesRef,
+      where('type', '==', 'lámpa'),
+      where('isOn', '==', true)
+    );
+    return collectionData(q, { idField: 'id' });
+  }
+  getOtherTurnedOn(firestore: Firestore) {
+    const devicesRef = collection(firestore, 'devices');
+    const q = query(
+      devicesRef,
+      where('type', '==', 'other'),
+      where('isOn', '==', true)
+    );
+    return collectionData(q, { idField: 'id' });
   }
 }
